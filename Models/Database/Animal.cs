@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using ZooManagement.Helpers;
 
 namespace ZooManagement.Models.Database

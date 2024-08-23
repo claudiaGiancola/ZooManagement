@@ -9,11 +9,11 @@ namespace ZooManagement.Data
         private static readonly IList<IList<string>> Data = new List<IList<string>>
         {
             new List<string> { "1","Mammal" },
-            new List<string> { "2","reptile" },
-            new List<string> { "3","bird" },
-            new List<string> { "4","insect" },
-            new List<string> { "5","fish" },
-            new List<string> { "6","invertebrate" }
+            new List<string> { "2","Reptile" },
+            new List<string> { "3","Bird" },
+            new List<string> { "4","Insect" },
+            new List<string> { "5","Fish" },
+            new List<string> { "6","Invertebrate" }
         };
 
         public static IEnumerable<Classification> GetClassifications()
