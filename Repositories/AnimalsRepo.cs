@@ -39,8 +39,7 @@ namespace ZooManagement.Repositories
                 .Where(p => search.Name == null || p.Name == search.Name)
                 .Where(p => search.SpeciesId == null || p.SpeciesId == search.SpeciesId)
                 .Where(p => search.ClassificationId == null || p.Species.ClassificationId == search.ClassificationId)
-                // .Where(p => search.Age == null || Math.Floor((DateTime.Today - p.DateOfBirth).TotalDays / 365) == search.Age)
-                .Where(p => search.Age == null || (DateTime.Today.Year - p.DateOfBirth.Year) == search.Age)
+                .Where(p => search.Age == null || DateTime.Today.Year - p.DateOfBirth.Year - (DateTime.Today.DayOfYear < p.DateOfBirth.DayOfYear ? 1 : 0) == search.Age)
                 .Skip((search.Page - 1) * search.PageSize)
                 .Take(search.PageSize);
 
