@@ -6,18 +6,17 @@ namespace ZooManagement.Models.Request
         public int PageSize { get; set; } = 10;
         public virtual string Filters => "";
     }
-    
 
-    // public class AnimalSearchRequest : SearchRequest
-    // {
-    //     public int? SpeciesId { get; set; }        
-    //     public override string Filters => SpeciesId == null ? "" : $"&speciesid={SpeciesId}";
-    // }
-
-        public class AnimalSearchRequest : SearchRequest
+    public class AnimalSearchRequest : SearchRequest
     {
-        public int? SpeciesId { get; set; }        
+        public int? SpeciesId { get; set; }
         public string? Name { get; set; }
-        public override string Filters => Name == null ? "" : $"&speciesid={SpeciesId}&name={Name}";
+
+        public string SearchText()
+        {
+            return SpeciesId.ToString() + Name;
+        }
+
+        public override string Filters => SearchText() == null ? "" : $"&speciesid={SpeciesId}&name={Name}";
     }
 }
