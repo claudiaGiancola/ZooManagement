@@ -11,12 +11,14 @@ namespace ZooManagement.Models.Request
     {
         public int? SpeciesId { get; set; }
         public string? Name { get; set; }
+        public int? ClassificationId { get; set; }
+        public int? Age { get; set; }
 
         public string SearchText()
         {
-            return SpeciesId.ToString() + Name;
+            return SpeciesId.ToString() + Name + ClassificationId.ToString() + Age.ToString();
         }
 
-        public override string Filters => SearchText() == null ? "" : $"&speciesid={SpeciesId}&name={Name}";
+        public override string Filters => SearchText() == null ? "" : $"&speciesid={SpeciesId}&name={Name}&classificationid={ClassificationId}&age={Age}";
     }
 }

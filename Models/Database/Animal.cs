@@ -8,6 +8,7 @@ namespace ZooManagement.Models.Database
         public int Id { get; set; }
         public string Name { get; set; }
         public int SpeciesId { get; set; }
+        public Species Species { get; set; }
         public Sex Sex { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime DateCameToZoo { get; set; }

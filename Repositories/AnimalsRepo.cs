@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ZooManagement.Models.Database;
 using ZooManagement.Models.Request;
 
@@ -32,11 +33,16 @@ namespace ZooManagement.Repositories
 
         public IEnumerable<Animal> Search(AnimalSearchRequest search)
         {
-                return _context.Animals
-                    .Where(p => search.Name == null || p.Name == search.Name)
-                    .Where(p => search.SpeciesId == null || p.SpeciesId == search.SpeciesId)
-                    .Skip((search.Page - 1) * search.PageSize)
-                    .Take(search.PageSize);
+
+            return _context.Animals
+                .Include(p => p.Species)
+                .Where(p => search.Name == null || p.Name == search.Name)
+                .Where(p => search.SpeciesId == null || p.SpeciesId == search.SpeciesId)
+                .Where(p => search.ClassificationId == null || p.Species.ClassificationId == search.ClassificationId)
+                // .Where(p => search.Age == null || Math.Floor((DateTime.Today - p.DateOfBirth).TotalDays / 365) == search.Age)
+                .Where(p => search.Age == null || (DateTime.Today.Year - p.DateOfBirth.Year) == search.Age)
+                .Skip((search.Page - 1) * search.PageSize)
+                .Take(search.PageSize);
 
         }
 
